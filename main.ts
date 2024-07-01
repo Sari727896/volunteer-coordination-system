@@ -1,11 +1,15 @@
 import App from "./app";
-
 (async () => {
-    let app;
-    try {
-        app = new App();
-        await app.init();
-    } finally {
-        await app?.terminate();
-    }
+   const app = new App();
+    await app.init();
+
+    process.on('SIGINT', async () => {
+        await app.terminate();
+        process.exit(0);
+    });
+
+    process.on('SIGTERM', async () => {
+        await app.terminate();
+        process.exit(0);
+    });
 })();
