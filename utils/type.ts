@@ -1,11 +1,14 @@
-import { Status,Priority } from "./enums";
+import { ObjectId } from 'mongodb';
+import { Status, Priority } from './enums';
 
 export interface HelpRequest {
-    _id: string,
+    _id: ObjectId,
     title: string,
     description: string,
     location: string,
-    status: Status, // Options: "open", "in progress", "closed"
-    priority: Priority, // Options: "low", "medium", "high"
-    volunteerId: string // ID of the volunteer (if assigned)
+    status: Status,
+    priority: Priority,
+    volunteerId: string
 }
+
+export type NewHelpRequest = Omit<HelpRequest, '_id'>;
