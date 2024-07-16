@@ -71,14 +71,45 @@ export default class RequestDal {
 
             console.log(`Update Result: ${JSON.stringify(updateResult)}`); // Log result
             if (updateResult ) {
+                console.log(`Updated request: ${JSON.stringify(updateResult)}`);
                 return updateResult as HelpRequest;
+            
             } else {
-                console.log(" after update.");
+                console.log("Request not found after update.");
                 return null;
             }
         } catch (err: any) {
             console.error(`Failed to update the request with volunteer information: ${err}`);
             throw new Error(`Failed to update the request with volunteer information: ${err}`);
+        }
+    }
+
+    public async closeRequest(requestId: string): Promise<HelpRequest | null> {
+        try {
+            const objectId = new ObjectId(requestId);
+            const request = await this.collection.findOne({ _id: objectId });
+
+            if (!request) {
+                throw new Error("Request not found");
+            }
+
+            if (request.status === Status.Closed) {
+                throw new Error("The request is already closed");
+            }
+
+            const updateResult = await this.collection.findOneAndUpdate(
+                { _id: objectId },
+                { $set: { status: Status.Closed } },
+                { returnDocument: 'after' } as FindOneAndUpdateOptions
+            );
+
+            if (updateResult) {
+                return updateResult as HelpRequest;
+            } else {
+                return null;
+            }
+        } catch (err: any) {
+            throw new Error(`Failed to close the request: ${err}`);
         }
     }
 }
