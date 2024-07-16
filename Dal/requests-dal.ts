@@ -70,12 +70,10 @@ export default class RequestDal {
             );
 
             console.log(`Update Result: ${JSON.stringify(updateResult)}`); // Log result
-            if (updateResult && 'value' in updateResult && updateResult.value) {
-                console.log(`Updated request: ${JSON.stringify(updateResult.value)}`);
-                return updateResult.value as HelpRequest;
-            
+            if (updateResult ) {
+                return updateResult as HelpRequest;
             } else {
-                console.log("Request not found after update.");
+                console.log(" after update.");
                 return null;
             }
         } catch (err: any) {

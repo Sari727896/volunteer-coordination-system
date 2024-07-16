@@ -65,7 +65,7 @@ export default class RequestsApi {
 
         this.router.post('/volunteer', async (req: Request, res: Response) => {
             const { requestId, volunteerId } = req.body;
-            console.log(`Request Body: ${JSON.stringify(req.body)}`); // Log request body
+         //  console.log(`Request Body: ${JSON.stringify(req.body)}`); // Log request body
             if (!requestId || !volunteerId) {
                 return res.status(400).send("Request ID and Volunteer ID are required");
             }
@@ -87,6 +87,7 @@ export default class RequestsApi {
 
         // Test route to isolate validation
         this.router.get('/test/:id', validateRequestId, (req: Request, res: Response) => {
+            console.log("i here test");
             res.send("Valid ID format");
         });
     }
