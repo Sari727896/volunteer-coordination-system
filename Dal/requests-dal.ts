@@ -70,7 +70,7 @@ export default class RequestDal {
             );
 
             console.log(`Update Result: ${JSON.stringify(updateResult)}`); // Log result
-            if (updateResult ) {
+            if (updateResult) {
                 return updateResult as HelpRequest;
             } else {
                 console.log(" after update.");
