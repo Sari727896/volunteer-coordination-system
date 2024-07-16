@@ -12,3 +12,9 @@ export interface HelpRequest {
 }
 
 export type NewHelpRequest = Omit<HelpRequest, '_id'>;
+
+ export interface Volunteer {
+    name: string;
+    email: string;
+    phone: string;
+}

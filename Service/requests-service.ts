@@ -24,4 +24,8 @@ export default class RequestService {
     public async volunteerForRequest(requestId: string, volunteerId: string) {
         return this.requestDal.volunteerForRequest(requestId, volunteerId);
     }
+
+    public async closeRequest(requestId: string): Promise<HelpRequest | null> {
+        return this.requestDal.closeRequest(requestId);
+    }
 }
