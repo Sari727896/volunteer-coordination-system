@@ -1,4 +1,8 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 class EmailService {
     private transporter: nodemailer.Transporter;
@@ -7,8 +11,8 @@ class EmailService {
         this.transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'lea86206@gmail.com',
-                pass: 'k o p k m g o t p m h j m o h v',
+                user: process.env.EMAIL_ADDRESS,
+                pass:  process.env.EMAIL_PASSWORD,
 
             },
         });
@@ -16,7 +20,7 @@ class EmailService {
 
     async sendEmail(to: string, subject: string, text: string) {
         const mailOptions = {
-            from: 'lea86206@gmail.com',
+            from: process.env.EMAIL_ADDRESS,
             to,
             subject,
             text,
