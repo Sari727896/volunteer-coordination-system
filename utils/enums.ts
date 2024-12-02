@@ -1,11 +1,11 @@
 export enum Status {
-    Open = "open",
-    InProgress = "in progress",
-    Closed = "closed"
+  Open = "open",
+  InProgress = "in progress",
+  Closed = "closed",
 }
 
- export enum Priority {
-    Low = "low",
-    Medium = "medium",
-    High = "high"
+export enum Priority {
+  Low = "low",
+  Medium = "medium",
+  High = "high",
 }
